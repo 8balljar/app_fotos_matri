@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tomar Foto</title>
+    <style>
+        #photos {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .photo {
+            width: 150px;
+            height: 150px;
+            margin: 10px;
+            overflow: hidden;
+        }
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <h1>Toma una foto</h1>
+    <div id="photos"></div>
+    <button id="open-camera-btn" class="menu-button">Abrir Cámara</button>
+
+    <script>
+        document.getElementById('open-camera-btn').addEventListener('click', function() {
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                // Es un dispositivo móvil
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(function(stream) {
+                        var video = document.createElement('video');
+                        video.srcObject = stream;
+                        video.play();
+                        video.addEventListener('click', function() {
+                            var canvas = document.createElement('canvas');
+                            canvas.width = video.videoWidth;
+                            canvas.height = video.videoHeight;
+                            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+                            var img = document.createElement('img');
+                            img.src = canvas.toDataURL('image/png');
+                            document.getElementById('photos').appendChild(createPhotoElement(img));
+                        });
+                    })
+                    .catch(function(err) {
+                        console.log("Error al acceder a la cámara: " + err);
+                        alert("No se pudo acceder a la cámara. Por favor, verifica que tienes una cámara disponible y los permisos necesarios.");
+                    });
+            } else {
+                // Es un dispositivo de escritorio
+                alert("Por favor, abre esta página desde un dispositivo móvil para tomar una foto.");
+            }
+        });
+
+        function createPhotoElement(img) {
+            var photoContainer = document.createElement('div');
+            photoContainer.classList.add('photo');
+            photoContainer.appendChild(img);
+            return photoContainer;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.intro-container {
+    text-align: center;
+    margin-top: 20%;
+}
+
+.intro-heading {
+    font-size: 28px; /* Reduce el tamaño del encabezado para dispositivos móviles */
+}
+
+.start-button {
+    padding: 10px 20px;
+    font-size: 16px; /* Reduce el tamaño del botón para dispositivos móviles */
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.start-button:hover {
+    opacity: 0.8;
+}
+
+.name-input-container {
+    display: none;
+    margin-top: 20px;
+}
+
+.name-input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 80%; /* Establece el ancho del campo de entrada */
+    margin: 0 auto; /* Centra horizontalmente el campo de entrada */
+}
+
+.submit-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #2ecc71;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    display: block; /* Cambia el botón a un elemento de bloque */
+    width: 30%; /* Establece el ancho del botón */
+    margin: 0 auto; /* Centra horizontalmente el botón */
+    margin-top: 10px; /* Añade un margen superior al botón */
+}
+
+.submit-button:hover {
+    opacity: 0.8;
+}
+
+/* Media query para dispositivos con un ancho máximo de 768px (típicamente dispositivos móviles) */
+@media (max-width: 768px) {
+    .intro-heading {
+        font-size: 24px; /* Reduce aún más el tamaño del encabezado para dispositivos móviles */
+        margin-top: 40vh; /* Ajusta el margen superior del contenedor principal para dispositivos móviles */
+    }
+}
